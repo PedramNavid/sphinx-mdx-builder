@@ -37,4 +37,4 @@ build-backend = "flit_core.buildapi"
 name = "sphinxcontrib.mdxbuilder"
 
 [project.optional-dependencies]
-test = ["pytest", "tox", "tox-uv"]
+test = ["pytest", "tox", "tox-uv", "ruff"]

@@ -1,20 +1,22 @@
 """
-    sphinxcontrib.mdxbuilder
-    =========================
+sphinxcontrib.mdxbuilder
+=========================
 
-    Sphinx extension to output MDX files.
+Sphinx extension to output MDX files.
 
-    .. moduleauthor:: Pedram Navid <pedram@dagster.io>
+.. moduleauthor:: Pedram Navid <pedram@dagster.io>
 
-    :copyright: Copyright 2024 by Pedram Navid.
-    :license: MIT, see LICENSE.txt for details.
+:copyright: Copyright 2024 by Pedram Navid.
+:license: MIT, see LICENSE.txt for details.
 """
+
 __version__ = "0.0.1.dev"
 import sphinx
 
+
 def setup(app: sphinx.application.Sphinx):
     from sphinxcontrib.mdxbuilder.builders.mdx import MdxBuilder
-    
+
     app.add_builder(MdxBuilder)
 
     # File suffix for generated files

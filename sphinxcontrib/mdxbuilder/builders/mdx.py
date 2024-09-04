@@ -11,8 +11,6 @@ from ..writers.mdx import MdxWriter
 logger = logging.getLogger(__name__)
 
 
-
-
 class MdxBuilder(Builder):
     name = "mdx"
     format = "mdx"

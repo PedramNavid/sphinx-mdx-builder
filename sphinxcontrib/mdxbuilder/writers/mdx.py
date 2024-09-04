@@ -1,4 +1,3 @@
-
 import logging
 import re
 import textwrap
@@ -785,14 +784,13 @@ class MdxTranslator(SphinxTranslator):
         self.current_row.append(text.replace("\n", ""))
         self.stateindent.pop()
 
-
     # Dagster specific nodes
     ###########################################################################
     # TODO: Move these out of this module and extract out docusaurus
     # style admonitions
     def visit_flag(self, node: Element) -> None:
         flag_type = node.attributes["flag_type"]
-        message = node.attributes["message"].replace(':::', '')
+        message = node.attributes["message"].replace(":::", "")
         set_flag = "info"
         if flag_type == "experimental":
             set_flag = "danger"
