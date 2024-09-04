@@ -10,11 +10,13 @@ Sphinx extension to output MDX files.
 :license: MIT, see LICENSE.txt for details.
 """
 
-__version__ = "0.1.1"
-import sphinx
+import importlib.metadata
+
+__version__ = importlib.metadata.version(__package__ or __name__)
+from sphinx.application import Sphinx
 
 
-def setup(app: sphinx.application.Sphinx):
+def setup(app: Sphinx):
     from sphinxcontrib.mdxbuilder.builders.mdx import MdxBuilder
 
     app.add_builder(MdxBuilder)
