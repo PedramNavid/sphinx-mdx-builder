@@ -6,7 +6,7 @@ import textwrap
 from collections.abc import Sequence
 from datetime import datetime
 from itertools import groupby
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any
 
 from docutils import nodes, writers
 from docutils.nodes import Element
@@ -250,7 +250,7 @@ class MdxTranslator(SphinxTranslator):
     def add_text(self, text: str) -> None:
         self.states[-1].append((-1, text))
 
-    def get_source_github_url(self, objname: str, modname: str, fullname: str) -> Optional[str]:
+    def get_source_github_url(self, objname: str, modname: str, fullname: str) -> str | None:
         """Generate a GitHub URL for a Python object.
 
         Args:
@@ -372,7 +372,7 @@ class MdxTranslator(SphinxTranslator):
                 # may be targets inside of references, but nested "a"
                 # elements aren't allowed in XHTML (even if they do
                 # not all have a "href" attribute).
-                if empty or isinstance(node, (nodes.Sequential, nodes.docinfo, nodes.table)):
+                if empty or isinstance(node, nodes.Sequential | nodes.docinfo | nodes.table):
                     # Insert target right in front of element.
                     prefix.append(f'<Link id="{id}"></Link>')
                 else:
@@ -759,7 +759,7 @@ class MdxTranslator(SphinxTranslator):
         if not (
             isinstance(
                 node.parent,
-                (nodes.list_item, nodes.entry, addnodes.desc_content, nodes.field_body),
+                nodes.list_item | nodes.entry | addnodes.desc_content | nodes.field_body,
             )
             and (len(node.parent) == 1)
         ):
@@ -769,7 +769,7 @@ class MdxTranslator(SphinxTranslator):
         if not (
             isinstance(
                 node.parent,
-                (nodes.list_item, nodes.entry, addnodes.desc_content, nodes.field_body),
+                nodes.list_item | nodes.entry | addnodes.desc_content | nodes.field_body,
             )
             and (len(node.parent) == 1)
         ):
@@ -777,7 +777,7 @@ class MdxTranslator(SphinxTranslator):
 
     def visit_reference(self, node: Element) -> None:
         if len(node.children) == 1 and isinstance(
-            node.children[0], (nodes.literal, addnodes.literal_emphasis)
+            node.children[0], nodes.literal | addnodes.literal_emphasis
         ):
             # For references containing only a literal or literal_emphasis, use the literal text
             ref_text = node.children[0].astext()
