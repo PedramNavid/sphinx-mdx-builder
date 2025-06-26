@@ -1,0 +1,65 @@
+[project]
+name = "sphinxcontrib-mdxbuilder"
+description = "Sphinx extension to build MDX files for Docusaurus"
+authors = [
+    {name = "Pedram Navid", email = "pedram.navid@gmail.com"}
+]
+requires-python = ">=3.10"
+readme = "README.md"
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Documentation",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Text Processing :: Markup",
+    "Framework :: Sphinx",
+    "Framework :: Sphinx :: Extension",
+]
+version = "1.0.0"
+keywords = ["sphinx", "mdx", "docusaurus", "documentation"]
+
+dependencies = [
+    "sphinx>=7.0",
+]
+
+[project.urls]
+homepage = "https://github.com/PedramNavid/sphinx-mdx-builder"
+repository = "https://github.com/PedramNavid/sphinx-mdx-builder"
+issues = "https://github.com/PedramNavid/sphinx-mdx-builder/issues"
+
+[project.scripts]
+sphinx-builder-mdx = "sphinxcontrib.mdxbuilder.__main__:main"
+
+[project.optional-dependencies]
+test = ["pytest", "tox", "tox-uv", "ruff"]
+dev = ["pytest", "tox", "tox-uv", "ruff", "black", "mypy", "pre-commit"]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+extend-select = ["I", "UP"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+]
